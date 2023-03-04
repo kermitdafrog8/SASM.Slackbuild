@@ -25,7 +25,7 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=SASM
-VERSION=${VERSION:-3.13.4}
+VERSION=${VERSION:-3.14.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
@@ -80,6 +80,7 @@ find -L . \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
   qmake
+  patch $TMP/$PRGNAM-$VERSION/Makefile $CWD/Makefile.patch
   make
   make install DESTDIR=$PKG
 cd ..
